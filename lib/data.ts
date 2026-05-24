@@ -16,7 +16,8 @@ export const products: Product[] = [
   {
     id: '1',
     name: 'Tomates fraîches',
-    price: 500,
+    price: 450,
+    originalPrice: 600,
     unit: 'kg',
     image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600&auto=format&fit=crop&q=80',
     category: 'fruits-legumes',
@@ -83,7 +84,8 @@ export const products: Product[] = [
   {
     id: '7',
     name: 'Poulet entier',
-    price: 3500,
+    price: 2625,
+    originalPrice: 3500,
     unit: 'piece',
     image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600&auto=format&fit=crop&q=80',
     category: 'viandes-poissons',
@@ -128,7 +130,8 @@ export const products: Product[] = [
   {
     id: '11',
     name: 'Riz local',
-    price: 1200,
+    price: 900,
+    originalPrice: 1200,
     unit: 'kg',
     image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=80',
     category: 'cereales-grains',

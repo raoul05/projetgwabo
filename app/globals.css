@@ -1,186 +1,69 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
+/* =========================
+   GWABO DESIGN SYSTEM
+========================= */
 
 :root {
-  /* GWABO Brand Colors */
-  --background: #FAFAF7;
-  --foreground: #1a1a1a;
-  --card: #ffffff;
-  --card-foreground: #1a1a1a;
-  --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #085041;
-  --primary-foreground: #ffffff;
-  --secondary: #1D9E75;
-  --secondary-foreground: #ffffff;
-  --muted: #f3f4f1;
-  --muted-foreground: #6b7280;
-  --accent: #F4722B;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e5e7eb;
-  --input: #e5e7eb;
-  --ring: #085041;
-  --chart-1: #085041;
-  --chart-2: #1D9E75;
-  --chart-3: #F4722B;
-  --chart-4: #3b82f6;
-  --chart-5: #8b5cf6;
+  --background: 60 20% 98%;
+  --foreground: 0 0% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+
+  --primary: 158 95% 25%;
+  --secondary: 150 70% 35%;
+  --accent: 24 95% 60%;
+
+  --muted: 60 10% 94%;
+  --muted-foreground: 220 10% 45%;
+
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 158 95% 25%;
+
   --radius: 0.75rem;
-  --sidebar: #085041;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #1D9E75;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #0a6352;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #0a6352;
-  --sidebar-ring: #1D9E75;
 }
 
+/* DARK MODE */
 .dark {
-  --background: #0f1410;
-  --foreground: #f5f5f5;
-  --card: #1a1f1c;
-  --card-foreground: #f5f5f5;
-  --popover: #1a1f1c;
-  --popover-foreground: #f5f5f5;
-  --primary: #1D9E75;
-  --primary-foreground: #ffffff;
-  --secondary: #085041;
-  --secondary-foreground: #ffffff;
-  --muted: #262b28;
-  --muted-foreground: #9ca3af;
-  --accent: #F4722B;
-  --accent-foreground: #ffffff;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  --border: #374151;
-  --input: #374151;
-  --ring: #1D9E75;
-  --chart-1: #1D9E75;
-  --chart-2: #085041;
-  --chart-3: #F4722B;
-  --chart-4: #60a5fa;
-  --chart-5: #a78bfa;
-  --sidebar: #0a1410;
-  --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: #1D9E75;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1a2420;
-  --sidebar-accent-foreground: #f5f5f5;
-  --sidebar-border: #1a2420;
-  --sidebar-ring: #1D9E75;
+  --background: 140 10% 8%;
+  --foreground: 0 0% 95%;
+
+  --card: 140 10% 12%;
+  --card-foreground: 0 0% 95%;
+
+  --popover: 140 10% 12%;
+  --popover-foreground: 0 0% 95%;
+
+  --primary: 150 70% 45%;
+  --secondary: 158 60% 25%;
+  --accent: 24 95% 60%;
+
+  --muted: 140 10% 18%;
+  --muted-foreground: 220 10% 65%;
+
+  --border: 140 10% 25%;
+  --input: 140 10% 25%;
+  --ring: 150 70% 45%;
 }
 
-@theme inline {
-  --font-sans: 'Inter', 'Geist', 'Geist Fallback', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
+/* =========================
+   BASE LAYER
+========================= */
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: Inter, system-ui, sans-serif;
   }
 }
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--muted);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
-}
-
-/* Glassmorphism utility */
-.glass {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.dark .glass {
-  background: rgba(26, 31, 28, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Hide scrollbar utility */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-/* Card hover zoom */
-.hover-zoom {
-  overflow: hidden;
-}
-.hover-zoom img {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.hover-zoom:hover img {
-  transform: scale(1.05);
-}
-
-/* Premium gradient */
-.premium-gradient {
-  background: linear-gradient(135deg, #085041 0%, #0b5e4d 50%, #1D9E75 100%);
-}
-

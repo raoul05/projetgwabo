@@ -1,134 +1,217 @@
+'use client'
+
 import Link from 'next/link'
-import { ArrowRight, Clock, Truck, Star, Award, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Leaf, ShieldCheck, Smile, Star, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary via-[#074639] to-secondary py-16 md:py-24 lg:py-32">
-      {/* Visual background decorations - premium organic blobs */}
-      <div className="absolute inset-0 opacity-15">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-400 blur-3xl" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-accent/40 blur-3xl" />
-        <div className="absolute top-[30%] left-[20%] w-[30%] h-[30%] rounded-full bg-white/20 blur-2xl" />
+    <section className="relative overflow-hidden bg-gradient-to-tr from-[#FAF8F2] via-[#FDFCF7] to-[#F5F8F2] py-16 md:py-24 lg:py-28">
+      {/* Self-contained float animations */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(4deg); }
+        }
+        @keyframes float-medium {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-14px) rotate(-6deg); }
+        }
+        .animate-float-slow {
+          animation: float-slow 7s ease-in-out infinite;
+        }
+        .animate-float-medium {
+          animation: float-medium 5s ease-in-out infinite;
+        }
+      `}} />
+
+      {/* Floating leaves/blobs background decorations */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Soft blur backgrounds */}
+        <div className="absolute top-[-10%] left-[-5%] w-[45%] h-[45%] rounded-full bg-emerald-500/5 blur-3xl" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-amber-500/5 blur-3xl" />
+
+        {/* Decorative Floating Leaves */}
+        <div className="absolute top-[15%] left-[5%] animate-float-slow opacity-15 text-emerald-800 hidden md:block">
+          <Leaf className="h-10 w-10 rotate-12" />
+        </div>
+        <div className="absolute bottom-[20%] left-[45%] animate-float-medium opacity-20 text-emerald-600 hidden lg:block">
+          <Leaf className="h-7 w-7 -rotate-45" />
+        </div>
+        <div className="absolute top-[10%] right-[35%] animate-float-slow opacity-15 text-emerald-700 hidden lg:block">
+          <Leaf className="h-8 w-8 rotate-90" />
+        </div>
       </div>
 
-      {/* Decorative vector grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column - Content */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Trust badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4.5 py-2 text-white text-xs font-semibold tracking-wider uppercase mb-6 shadow-sm">
-              <Star className="h-4 w-4 fill-accent text-accent animate-pulse-subtle" />
-              <span>L'Épicerie #1 de Bouaké</span>
+          <div className="lg:col-span-6 flex flex-col items-start text-left">
+            {/* Soft green capsule badge */}
+            <div className="inline-flex items-center gap-2 bg-[#E8F5E9] border border-emerald-100 rounded-full px-4 py-1.5 text-[#2E7D32] text-xs font-extrabold tracking-wide mb-6 shadow-xs select-none">
+              <Leaf className="h-3.5 w-3.5 fill-[#2E7D32]" />
+              <span>Frais, naturel et livré chez vous</span>
             </div>
 
-            {/* Premium heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6 tracking-tight">
-              Vos courses fraîches <br className="hidden md:inline" />
-              livrées en <span className="text-accent underline decoration-accent/30 decoration-wavy underline-offset-8">45 minutes</span>
+            {/* Premium organic heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-slate-800 leading-[1.12] mb-5 tracking-tight font-serif">
+              Le <span className="text-[#1D7A41]">marché</span> de Bouaké<br />
+              dans votre poche
             </h1>
 
             {/* Description */}
-            <p className="text-base sm:text-lg text-white/85 mb-8 max-w-xl leading-relaxed">
-              GWABO sélectionne le meilleur des marchés de Bouaké pour vous livrer directement à domicile. Produits frais, hygiène irréprochable et livraison ultra-rapide.
+            <p className="text-sm sm:text-base text-slate-600/90 mb-8 max-w-xl leading-relaxed">
+              Découvrez les meilleurs produits frais, fruits, légumes et essentiels du quotidien. GWABO sélectionne le meilleur des marchés de Bouaké pour vous livrer directement à domicile.
             </p>
 
             {/* Call To Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Link href="#products" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-white text-sm font-bold tracking-wide uppercase px-8 py-6 rounded-full transition-all duration-300 hover:scale-102 hover:shadow-lg hover:shadow-accent/20">
+                <Button className="w-full sm:w-auto bg-[#1D7A41] hover:bg-[#155A2F] text-white text-xs font-black tracking-widest uppercase px-7 py-5.5 rounded-full transition-all duration-300 hover:scale-[1.01] hover:shadow-md hover:shadow-emerald-900/10 group">
                   Commander maintenant
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Button>
               </Link>
               <Link href="/category/fruits-legumes" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto text-white border-white/25 hover:bg-white/10 text-sm font-bold tracking-wide uppercase px-8 py-6 rounded-full transition-all">
-                  Découvrir le marché
+                <Button className="w-full sm:w-auto bg-[#F2B723] hover:bg-[#D9A116] text-slate-900 text-xs font-black tracking-widest uppercase px-7 py-5.5 rounded-full transition-all duration-300 hover:scale-[1.01] hover:shadow-md group">
+                  Voir les produits
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Button>
               </Link>
             </div>
-
-            {/* Trust highlights */}
-            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-4 border-t border-white/10 w-full">
-              <div className="flex items-center gap-3 text-white/90">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-xs border border-white/10 shadow-xs">
-                  <Clock className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-xs text-white/60 uppercase font-bold tracking-wider">Rapidité</p>
-                  <p className="text-sm font-semibold">Moins de 45 min</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 text-white/90">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-xs border border-white/10 shadow-xs">
-                  <Truck className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-xs text-white/60 uppercase font-bold tracking-wider">Frais fixes</p>
-                  <p className="text-sm font-semibold">500 FCFA partout</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 text-white/90">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-xs border border-white/10 shadow-xs">
-                  <ShieldCheck className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="text-xs text-white/60 uppercase font-bold tracking-wider">Qualité</p>
-                  <p className="text-sm font-semibold">Sélection rigoureuse</p>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* Right Column - Premium Layout of Visual Mockups */}
-          <div className="lg:col-span-5 relative hidden lg:flex items-center justify-center h-full">
-            {/* Background glowing circle */}
-            <div className="absolute w-72 h-72 rounded-full bg-emerald-500/10 blur-2xl animate-pulse-subtle" />
+          {/* Right Column - Collage and Floating Glass Cards */}
+          <div className="lg:col-span-6 relative flex items-center justify-center min-h-[360px] sm:min-h-[440px] lg:min-h-[460px]">
+            {/* Glow effect behind collage */}
+            <div className="absolute w-72 h-72 rounded-full bg-emerald-500/5 blur-3xl animate-pulse-subtle z-0" />
 
-            {/* Primary high-fidelity mockup */}
-            <div className="relative z-10 w-full max-w-md aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/40 group hover:scale-[1.01] transition-all duration-500">
+            {/* Collage main image */}
+            <div className="relative z-10 w-full max-w-md aspect-[4/3] sm:aspect-square rounded-[36px] overflow-hidden border border-black/[0.04] shadow-xl group hover:scale-[1.01] transition-all duration-500">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop&q=80" 
-                alt="Fresh grocery market Bouake"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                src="https://images.unsplash.com/photo-1610832958506-ee5633613044?w=800&auto=format&fit=crop&q=80" 
+                alt="Marché de produits frais à Bouaké"
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#085041]/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/[0.04] via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Overlapping Floating Cards - Glassmorphism */}
-            <div className="absolute -left-6 bottom-10 z-20 glass rounded-2xl p-4.5 max-w-[240px] shadow-xl animate-bounce-subtle">
-              <div className="flex gap-3 items-start">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary text-white">
-                  <Award className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Fraîcheur</p>
-                  <p className="text-sm font-bold text-foreground mt-0.5 leading-snug">Sélectionné le matin même au marché</p>
-                </div>
+            {/* Card 1: 100% Naturel (Top left) */}
+            <div className="absolute top-4 left-0 sm:left-4 z-20 bg-white/95 backdrop-blur-md rounded-2xl py-2.5 px-3.5 max-w-[200px] shadow-lg border border-black/[0.03] animate-float-slow flex items-center gap-2.5">
+              <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#2E7D32]">
+                <Check className="h-4.5 w-4.5 stroke-[3]" />
+              </div>
+              <div>
+                <p className="text-xs font-black text-slate-800 leading-none">100% Naturel</p>
+                <p className="text-[9px] font-bold text-slate-500 mt-1 leading-none">Sans produits chimiques</p>
               </div>
             </div>
 
-            <div className="absolute -right-6 top-10 z-20 glass rounded-2xl p-4.5 max-w-[200px] shadow-xl">
-              <div className="flex gap-3 items-center">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-white">
-                  <Star className="h-4.5 w-4.5 fill-current" />
+            {/* Card 2: Livraison rapide (Bottom left) */}
+            <div className="absolute bottom-6 left-0 sm:left-6 z-20 bg-white/95 backdrop-blur-md rounded-2xl py-2.5 px-3.5 max-w-[220px] shadow-lg border border-black/[0.03] animate-float-medium flex items-center gap-2.5">
+              <div className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-full bg-[#FFF3E0] text-[#E65100]">
+                <span className="text-base select-none">🚚</span>
+              </div>
+              <div>
+                <p className="text-xs font-black text-slate-800 leading-none">Livraison rapide</p>
+                <p className="text-[9px] font-bold text-slate-500 mt-1 leading-none">Frais et livré le jour même</p>
+              </div>
+            </div>
+
+            {/* Card 3: 4.9/5 Note (Bottom right) */}
+            <div className="absolute right-0 sm:right-6 bottom-16 sm:bottom-20 z-20 bg-white/95 backdrop-blur-md rounded-2xl py-3 px-3.5 min-w-[155px] shadow-lg border border-black/[0.03] animate-float-slow flex flex-col gap-2.5">
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-500">
+                  <Star className="h-4 w-4 fill-current stroke-current" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-bold tracking-wider">Avis clients</p>
-                  <p className="text-sm font-extrabold text-foreground leading-none mt-0.5">4.9/5 (Bouaké)</p>
+                  <p className="text-xs font-black text-slate-800 leading-none">4.9/5</p>
+                  <p className="text-[9px] font-bold text-slate-500 mt-0.5 leading-none">12K Avis clients</p>
+                </div>
+              </div>
+
+              {/* Overlapping customer avatars */}
+              <div className="flex items-center">
+                <img 
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=85" 
+                  alt="Client" 
+                  className="w-6.5 h-6.5 rounded-full border-2 border-white object-cover shadow-xs select-none"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=85" 
+                  alt="Client" 
+                  className="w-6.5 h-6.5 rounded-full border-2 border-white object-cover shadow-xs -ml-2 select-none"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=85" 
+                  alt="Client" 
+                  className="w-6.5 h-6.5 rounded-full border-2 border-white object-cover shadow-xs -ml-2 select-none"
+                />
+                <img 
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=85" 
+                  alt="Client" 
+                  className="w-6.5 h-6.5 rounded-full border-2 border-white object-cover shadow-xs -ml-2 select-none"
+                />
+                <div className="w-6.5 h-6.5 rounded-full bg-[#1D7A41] text-white flex items-center justify-center text-[9px] font-black border-2 border-white -ml-2 z-10 shrink-0 select-none">
+                  +
                 </div>
               </div>
             </div>
           </div>
 
         </div>
+
+        {/* Bottom Horizontal Core Pillars Banner */}
+        <div className="relative z-20 mt-16 max-w-5xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-md rounded-[28px] py-6 px-6 sm:px-8 border border-black/[0.04] shadow-md grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 justify-items-stretch select-none">
+            {/* Pillar 1 */}
+            <div className="flex items-center gap-3.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#2E7D32]">
+                <Leaf className="h-5 w-5 fill-[#2E7D32]" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-xs font-black text-slate-800 leading-tight">100% Frais</h4>
+                <p className="text-[10px] font-bold text-slate-500 mt-0.5 leading-snug">Produits naturels et certifiés</p>
+              </div>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="flex items-center gap-3.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#2E7D32]">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-xs font-black text-slate-800 leading-tight">Paiement sécurisé</h4>
+                <p className="text-[10px] font-bold text-slate-500 mt-0.5 leading-snug">Mobile Money & espèces</p>
+              </div>
+            </div>
+
+            {/* Pillar 3 */}
+            <div className="flex items-center gap-3.5 border-t border-slate-100 pt-4 sm:border-t-0 sm:pt-0 lg:border-t-0 lg:pt-0 col-span-1 lg:col-span-1">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#2E7D32]">
+                <Leaf className="h-5 w-5 rotate-90" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-xs font-black text-slate-800 leading-tight">Emballage soigné</h4>
+                <p className="text-[10px] font-bold text-slate-500 mt-0.5 leading-snug">Écologique et recyclable</p>
+              </div>
+            </div>
+
+            {/* Pillar 4 */}
+            <div className="flex items-center gap-3.5 border-t border-slate-100 pt-4 sm:border-t-0 sm:pt-0 lg:border-t-0 lg:pt-0 col-span-1 lg:col-span-1">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E8F5E9] text-[#2E7D32]">
+                <Smile className="h-5 w-5" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="text-xs font-black text-slate-800 leading-tight">Clients satisfaits</h4>
+                <p className="text-[10px] font-bold text-slate-500 mt-0.5 leading-snug">Des milliers nous font confiance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   )

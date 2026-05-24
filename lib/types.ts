@@ -4,6 +4,7 @@ export interface Product {
   id: string
   name: string
   price: number
+  originalPrice?: number
   unit: ProductUnit
   image: string
   category: string

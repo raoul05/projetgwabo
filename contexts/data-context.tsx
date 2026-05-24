@@ -196,7 +196,58 @@ export function DataProvider({ children }: { children: ReactNode }) {
           const storedProducts = localStorage.getItem(STORAGE_KEYS.PRODUCTS)
           let parsedProducts = initialProducts
           if (storedProducts) {
-            parsedProducts = JSON.parse(storedProducts)
+            console.log('[HEALER] Stored products detected, executing healer!', storedProducts.slice(0, 100))
+            const loaded = JSON.parse(storedProducts)
+            if (Array.isArray(loaded)) {
+              // Detailed image healing map to match filenames to Unsplash mock URLs
+              const imageMap: Record<string, string> = {
+                'tomatoes.jpg': 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600&auto=format&fit=crop&q=80',
+                'onions.jpg': 'https://images.unsplash.com/photo-1508747703725-719777637510?w=600&auto=format&fit=crop&q=80',
+                'pepper.jpg': 'https://images.unsplash.com/photo-1588252303782-cb80119cb665?w=600&auto=format&fit=crop&q=80',
+                'eggplant.jpg': 'https://images.unsplash.com/photo-1590370054320-b9933ef74457?w=600&auto=format&fit=crop&q=80',
+                'okra.jpg': 'https://images.unsplash.com/photo-1565538810844-1e119ba81b2a?w=600&auto=format&fit=crop&q=80',
+                'plantain.jpg': 'https://images.unsplash.com/photo-1566393028639-d108a42c46a7?w=600&auto=format&fit=crop&q=80',
+                'chicken.jpg': 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600&auto=format&fit=crop&q=80',
+                'beef.jpg': 'https://images.unsplash.com/photo-1588168333986-5078647a5ab0?w=600&auto=format&fit=crop&q=80',
+                'tilapia.jpg': 'https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?w=600&auto=format&fit=crop&q=80',
+                'shrimp.jpg': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&auto=format&fit=crop&q=80',
+                'rice.jpg': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=80',
+                'attieke.jpg': 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600&auto=format&fit=crop&q=80',
+                'corn-flour.jpg': 'https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?w=600&auto=format&fit=crop&q=80',
+                'palm-oil.jpg': 'https://images.unsplash.com/photo-1614749610992-0b73c4d21650?w=600&auto=format&fit=crop&q=80',
+                'vegetable-oil.jpg': 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&auto=format&fit=crop&q=80',
+                'maggi.jpg': 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=600&auto=format&fit=crop&q=80',
+                'water.jpg': 'https://images.unsplash.com/photo-1560023907-5f679d1f3b86?w=600&auto=format&fit=crop&q=80',
+                'bissap.jpg': 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&auto=format&fit=crop&q=80',
+                'yam.jpg': 'https://images.unsplash.com/photo-1595855759920-86582396756a?w=600&auto=format&fit=crop&q=80',
+                'cassava.jpg': 'https://images.unsplash.com/photo-1590005354167-6da97870c913?w=600&auto=format&fit=crop&q=80'
+              };
+
+              parsedProducts = loaded.map((p: any) => {
+                const initial = initialProducts.find(ip => String(ip.id) === String(p.id));
+                let healedImage = p.image;
+                
+                if (!p.image || !p.image.startsWith('http')) {
+                  const filename = p.image ? p.image.split('/').pop() : '';
+                  if (filename && imageMap[filename]) {
+                    healedImage = imageMap[filename];
+                  } else if (initial?.image) {
+                    healedImage = initial.image;
+                  }
+                }
+                
+                return {
+                  ...p,
+                  image: healedImage,
+                  originalPrice: initial?.originalPrice || p.originalPrice
+                };
+              });
+              
+              // Sync the healed products back to local storage
+              localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(parsedProducts));
+            } else {
+              parsedProducts = loaded;
+            }
           } else {
             localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(initialProducts))
           }
